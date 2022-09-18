@@ -21,7 +21,7 @@ class Welcome extends React.Component {
   }
 
   componentDidMount() {
-    fetch("https://fiuber-api-gateway-nginx.herokuapp.com/api/web/")
+    fetch(process.env.API_GATEWAY+ "/api/web/")
       .then(response => response.text())
       .then(data => this.setState({ apiCallResponse: data }))
   }

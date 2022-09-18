@@ -13,6 +13,7 @@ RUN npm run build
 # ==== RUN =======
 # Set the env to "production"
 ENV NODE_ENV production
+ENV API_GATEWAY $API_GATEWAY
 # Expose the port on which the app will be running (3000 is the default that `serve` uses)
 EXPOSE 80
 # Start the app
