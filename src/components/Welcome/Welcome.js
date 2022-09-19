@@ -21,7 +21,7 @@ class Welcome extends React.Component {
   }
 
   componentDidMount() {
-    fetch(process.env.API_GATEWAY+ "/api/web/")
+    fetch(process.env.REACT_APP_API_GATEWAY+ "/api/web/")
       .then(response => response.text())
       .then(data => this.setState({ apiCallResponse: data }))
   }
