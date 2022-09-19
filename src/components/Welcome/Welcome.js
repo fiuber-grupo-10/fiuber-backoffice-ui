@@ -1,3 +1,4 @@
+import {url} from 'vars.js';
 import React, { PropTypes } from 'react';
 import './Welcome.css';
 
@@ -20,7 +21,7 @@ class Welcome extends React.Component {
   }
 
   componentDidMount() {
-    const stringUrl = process.env.REACT_APP_API_GATEWAY+ "/api/web/";
+    const stringUrl = url+"/api/web/";
     fetch(stringUrl)
       .then(response => response.text())
       .then(data => this.setState({ apiCallResponse: data }))
