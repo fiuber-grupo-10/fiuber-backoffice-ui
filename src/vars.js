@@ -1,1 +1,1 @@
-export let url = "https://localhost";
+export let url = "https://fiuber-api-gateway-nginx.herokuapp.com";
