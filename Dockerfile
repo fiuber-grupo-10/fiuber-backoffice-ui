@@ -7,7 +7,7 @@ WORKDIR /app
 RUN export REACT_APP_API_GATEWAY=$REACT_APP_API_GATEWAY
 RUN echo "export let url = "\'$REACT_APP_API_GATEWAY\'";" > vars.js
 RUN ls
-
+COPY vars.js ./src
 # Copy app files
 COPY . .
 # ==== BUILD =====
