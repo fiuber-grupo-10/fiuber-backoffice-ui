@@ -5,10 +5,9 @@ FROM node:18-alpine
 WORKDIR /app
 
 RUN export REACT_APP_API_GATEWAY=$REACT_APP_API_GATEWAY
-RUN echo "export let url = "\'$REACT_APP_API_GATEWAY\'";" > vars.js
-COPY vars.js .
 # Copy app files
 COPY . .
+RUN echo "export let url = "\'$REACT_APP_API_GATEWAY\'";" > vars.js
 # ==== BUILD =====
 # Install dependencies (npm ci makes sure the exact versions in the lockfile gets installed)
 RUN npm ci 
