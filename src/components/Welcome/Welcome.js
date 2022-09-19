@@ -1,4 +1,4 @@
-import {url} from 'vars.js';
+import {url} from '../../vars';
 import React, { PropTypes } from 'react';
 import './Welcome.css';
 
