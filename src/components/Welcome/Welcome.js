@@ -6,7 +6,8 @@ class Welcome extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      apiCallResponse: 0
+      apiWebCallResponse: 'Loading...',
+      apiMobileCallResponse: 'Loading...',
     };
   }
 
@@ -14,17 +15,24 @@ class Welcome extends React.Component {
     return (
       <div>
         <p>React Welcome component</p>
-        <p>Rendering the content of the /api/web response...</p>
-        {this.state.apiCallResponse}
+        <p>Rendering the content of the /api/web/ response...</p>
+        {this.state.apiWebCallResponse}
+        <p>Rendering the content of the /api/mobile/ response...</p>
+        {this.state.apiMobileCallResponse}
       </div>
     );
   }
 
   componentDidMount() {
-    const stringUrl = url+"/api/web/";
-    fetch(stringUrl)
+    const stringUrlWeb = url+"/api/web/";
+    fetch(stringUrlWeb)
       .then(response => response.text())
-      .then(data => this.setState({ apiCallResponse: data }))
+      .then(data => this.setState({ apiWebCallResponse: data }))
+
+      const stringUrlMobile = url+"/api/mobile/";
+      fetch(stringUrlMobile)
+        .then(response => response.text())
+        .then(data => this.setState({ apiMobileCallResponse: data }))
   }
 }
 
