@@ -1,28 +1,21 @@
-import logo from './logo.svg';
 import './App.css';
-import Button from '@mui/material/Button';
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Login from "./components/Auth/Login";
+import Register from "./components/Auth/Register";
+import Reset from "./components/Auth/Reset";
+import Dashboard from './components/Dashboard/Dashboard';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <a
-          className="App-link"
-          href="https://fi.uba.ar"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Fiuber's Backoffice UI
-        </a>
-        <img src={logo} className="App-logo" alt="logo" />
-        <div>
-          <Button variant="text">Material Text</Button>
-          <br></br>
-          <Button variant="contained">Material Contained</Button>
-          <br></br>
-          <Button variant="outlined">Material Outlined</Button>
-        </div>
-      </header>
+      <Router>
+        <Routes>
+          <Route exact path="/" element={<Login />} />
+          <Route exact path="/register" element={<Register />} />
+          <Route exact path="/reset" element={<Reset />} />
+          <Route exact path="/dashboard" element={<Dashboard />} />
+        </Routes>
+      </Router>
     </div>
   );
 }
