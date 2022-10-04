@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { auth, logInWithEmailAndPassword, signInWithGoogle } from "../../firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
+import { Button, TextField , Grid, Paper, Link, Typography} from '@mui/material';
 import "./Login.css";
 
 function Login() {
@@ -18,43 +19,58 @@ function Login() {
     if (error) { 
       alert(error)
     }
-    if (user) navigate("/dashboard");
+    if (user) navigate("/profile");
   }, [user, loading, navigate, error]);
 
   return (
-    <div className="login">
-      <div className="login__container">
-        <input
-          type="text"
-          className="login__textBox"
+    <Grid 
+      display="flex"
+      style={{height:'100vh',width: '100vw', alignItems:'center'}}
+    >
+      <Paper 
+        elevation={10} 
+        style={{padding :20,height:'35vh',width:280, margin:"20px auto"}}
+      >
+        <TextField 
+          label="Correo electrónico" 
+          variant="outlined" 
           value={email}
+          style={{ margin:10}}
           onChange={(e) => setEmail(e.target.value)}
-          placeholder="Correo electrónico"
-        />
-        <input
-          type="password"
-          className="login__textBox"
+          />
+        <TextField 
+          label="Contraseña" 
+          variant="outlined"
+          type="password" 
           value={password}
+          style={{ margin:10}}
           onChange={(e) => setPassword(e.target.value)}
-          placeholder="Contraseña"
-        />
-        <button
-          className="login__btn"
+          />
+        <Button
+          variant="contained"
+          style={{ margin:10}}
           onClick={() => logInWithEmailAndPassword(email, password)}
-        >
+          >
           Iniciar sesión
-        </button>
-        <button className="login__btn login__google" onClick={signInWithGoogle}>
+        </Button>
+        <Button
+          variant="text"
+          style={{ margin:10}}
+          onClick={signInWithGoogle}
+          >
           Iniciar sesión con Google
-        </button>
-        <div>
-          <Link to="/reset">Olvidé mi contraseña</Link>
-        </div>
-        <div>
-        No tiene una cuenta? <Link to="/register">Regístrese</Link> ahora.
-        </div>
-      </div>
-    </div>
+        </Button>
+        <Link href="/reset">Olvidé mi contraseña</Link>
+        <Typography variant='subtitle2' style={{ marginTop:10}}>
+          No tiene una cuenta? 
+        </Typography>
+        <Typography variant='subtitle2'>
+          <Link href="/register"> Regístrese </Link>
+          ahora.
+        </Typography>
+      </Paper>
+    </Grid>
+
   );
 }
 
