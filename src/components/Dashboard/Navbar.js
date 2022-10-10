@@ -82,8 +82,8 @@ export default function Navbar() {
                         onClose={handleClose}
                         >
                         <MenuItem onClick={navigateProfile}>Profile</MenuItem>
-                        <MenuItem onClick={logout}>Log out</MenuItem>
                         <MenuItem onClick={navigateDashboard}>Dashboard</MenuItem>
+                        <MenuItem onClick={logout}>Log out</MenuItem>
                     </Menu>
                 </div>
             </Toolbar>
