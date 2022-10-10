@@ -86,6 +86,19 @@ const logout = () => {
   window.sessionStorage.clear();
   signOut(auth);
 };
+
+const getAllUsers = async () => {
+  try {        
+    const q = query(collection(db, "users"));
+    const docs = await getDocs(q);    
+    const users = [];
+    docs.forEach(x => users.push(x.data()));    
+    return users;
+  } catch (err) {
+    console.error(err);
+    alert(err.message);
+  }
+};
 export {
   auth,
   db,
@@ -94,4 +107,5 @@ export {
   registerWithEmailAndPassword,
   sendPasswordReset,
   logout,
+  getAllUsers
 };
