@@ -38,6 +38,10 @@ export default function Navbar() {
         navigate('/profile');
     };
 
+    const navigateDashboard = () => {
+        navigate('/dashboard');
+    };
+
     return (
         <AppBar style={{height:'6vh'}} position="static">
             <Toolbar>
@@ -79,6 +83,7 @@ export default function Navbar() {
                         >
                         <MenuItem onClick={navigateProfile}>Profile</MenuItem>
                         <MenuItem onClick={logout}>Log out</MenuItem>
+                        <MenuItem onClick={navigateDashboard}>Dashboard</MenuItem>
                     </Menu>
                 </div>
             </Toolbar>
