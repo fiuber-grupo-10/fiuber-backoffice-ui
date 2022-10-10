@@ -50,12 +50,12 @@ const signInWithGoogle = async () => {
     alert(err.message);
   }
 };
-const logInWithEmailAndPassword = async (email, password) => {
+const logInWithEmailAndPassword = async (email, password, callback) => {
   try {
     await signInWithEmailAndPassword(auth, email, password);
   } catch (err) {
+    callback(err.message)
     console.error(err);
-    alert(err.message);
   }
 };
 const registerWithEmailAndPassword = async (name, email, password) => {
@@ -83,6 +83,7 @@ const sendPasswordReset = async (email) => {
   }
 };
 const logout = () => {
+  window.sessionStorage.clear();
   signOut(auth);
 };
 export {
