@@ -68,6 +68,7 @@ function Dashboard() {
             <TableCell>Email</TableCell>
             <TableCell align="right">Name</TableCell>  
             <TableCell align="right">Provider</TableCell>            
+            <TableCell align="right">Roles</TableCell>            
             <TableCell align="right">ID</TableCell>            
           </TableRow>
         </TableHead>
@@ -82,6 +83,7 @@ function Dashboard() {
               </TableCell>
               <TableCell align="right">{row.name}</TableCell>
               <TableCell align="right">{row.authProvider}</TableCell>              
+              <TableCell align="right">{row?.roles?.toString()}</TableCell>              
               <TableCell align="right">{row.uid}</TableCell>
             </TableRow>
           ))}
