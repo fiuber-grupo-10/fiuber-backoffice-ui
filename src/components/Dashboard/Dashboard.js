@@ -30,8 +30,7 @@ function Dashboard() {
     }
     fetchUserName();
   });
-  return (
-    <Provider>
+  return (    
     <Grid style={{ height: '100vh', width: '100vw', alignItems: 'center' }}>
       <Navbar />
       <Grid
@@ -50,9 +49,7 @@ function Dashboard() {
           </Typography>
         </Paper>
       </Grid>
-
     </Grid>
-    </Provider>
   );
 }
 export default Dashboard;
