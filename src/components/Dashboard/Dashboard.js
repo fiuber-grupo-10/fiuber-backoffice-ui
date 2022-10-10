@@ -1,9 +1,11 @@
+import { Provider } from 'react-redux'
 import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
-import "./Dashboard.css";
 import { auth, db, logout } from "../../firebase";
 import { query, collection, getDocs, where } from "firebase/firestore";
+import { Button, TextField, Grid, Paper, Link, Typography } from '@mui/material';
+import Navbar from "./Navbar";
 
 function Dashboard() {
   const [user, loading, error] = useAuthState(auth);
@@ -23,22 +25,34 @@ function Dashboard() {
   useEffect(() => {
     if (loading) return;
     if (!user) return navigate("/");
-    if (error) { 
+    if (error) {
       alert(error)
     }
     fetchUserName();
   });
   return (
-    <div className="dashboard">
-       <div className="dashboard__container">
-        Inició sesión como
-         <div>{name}</div>
-         <div>{user?.email}</div>
-         <button className="dashboard__btn" onClick={logout}>
-          Cerrar sesión
-         </button>
-       </div>
-     </div>
+    <Provider>
+    <Grid style={{ height: '100vh', width: '100vw', alignItems: 'center' }}>
+      <Navbar />
+      <Grid
+        display="flex"
+        style={{ height: '94vh', width: '100vw', alignItems: 'center' }}
+      >
+        <Paper
+          elevation={10}
+          style={{ padding: 20, height: '90%', width: '90%', margin: "20px auto" }}
+        >
+          <Typography>
+            {name}
+          </Typography>
+          <Typography>
+            {user?.email}
+          </Typography>
+        </Paper>
+      </Grid>
+
+    </Grid>
+    </Provider>
   );
 }
 export default Dashboard;
