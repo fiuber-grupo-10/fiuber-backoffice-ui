@@ -16,7 +16,7 @@ import Navbar from "./Navbar";
 function Dashboard() {
   const [user, loading, error] = useAuthState(auth);
   const [name, setName] = useState("");
-  const [users, setUsers] = useState("");
+  const [users, setUsers] = useState([]);
   const navigate = useNavigate();
   const fetchUsers = async () => {
     const users=  await getAllUsers();
@@ -72,7 +72,7 @@ function Dashboard() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {users?.map((row) => (
+          {users.map((row) => (
             <TableRow
               key={row.name}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
