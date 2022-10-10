@@ -2,9 +2,9 @@ import { Provider } from 'react-redux'
 import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
-import { auth, db, logout } from "../../firebase";
+import { auth, db } from "../../firebase";
 import { query, collection, getDocs, where } from "firebase/firestore";
-import { Button, TextField, Grid, Paper, Link, Typography } from '@mui/material';
+import { Grid, Paper, Typography } from '@mui/material';
 import Navbar from "./Navbar";
 
 function Dashboard() {
