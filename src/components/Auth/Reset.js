@@ -1,9 +1,9 @@
+import { Button, TextField , Grid, Paper} from '@mui/material';
 import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
 import { auth, sendPasswordReset } from "../../firebase";
-import "./Reset.css";
+
 
 function Reset() {
   const [email, setEmail] = useState("");
@@ -19,28 +19,30 @@ function Reset() {
   }, [user, loading, navigate, error]);
 
   return (
-    <div className="reset">
-      <div className="reset__container">
-        <input
-          type="text"
-          className="reset__textBox"
+    <Grid 
+    display="flex"
+    style={{height:'100vh',width: '100vw', alignItems:'center'}}>
+    <Paper 
+      elevation={10} 
+      style={{padding :20,height:'14vh',width:280, margin:"20px auto"}}
+    >
+       <TextField
+           label="E-mail" 
+           variant="outlined" 
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          placeholder="Correo electrónico"
+          placeholder="E-mail"
         />
-        <button className="reset__btn" onClick={() =>{
-          sendPasswordReset(email);
-          navigate('/');
-          } 
+        <br></br>
+        <Button
+          variant="contained"
+          style={{ margin:10}}
+          onClick={() =>{sendPasswordReset(email); navigate('/');} 
         }>
-          Enviar mail para reestablecer contraseña
-        </button>
-
-        <div>
-          No tiene una cuenta? <Link to="/register">Regístrese</Link> ahora.
-        </div>
-      </div>
-    </div>
+          Reset password
+        </Button> 
+      </Paper>
+      </Grid>
   );
 }
 

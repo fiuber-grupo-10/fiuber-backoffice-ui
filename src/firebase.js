@@ -50,12 +50,12 @@ const signInWithGoogle = async () => {
     alert(err.message);
   }
 };
-const logInWithEmailAndPassword = async (email, password) => {
+const logInWithEmailAndPassword = async (email, password, callback) => {
   try {
     await signInWithEmailAndPassword(auth, email, password);
   } catch (err) {
+    callback(err.message)
     console.error(err);
-    alert(err.message);
   }
 };
 const registerWithEmailAndPassword = async (name, email, password) => {
@@ -83,7 +83,21 @@ const sendPasswordReset = async (email) => {
   }
 };
 const logout = () => {
+  window.sessionStorage.clear();
   signOut(auth);
+};
+
+const getAllUsers = async () => {
+  try {        
+    const q = query(collection(db, "users"));
+    const docs = await getDocs(q);    
+    const users = [];
+    docs.forEach(x => users.push(x.data()));    
+    return users;
+  } catch (err) {
+    console.error(err);
+    alert(err.message);
+  }
 };
 export {
   auth,
@@ -93,4 +107,5 @@ export {
   registerWithEmailAndPassword,
   sendPasswordReset,
   logout,
+  getAllUsers
 };

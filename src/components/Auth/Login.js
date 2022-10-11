@@ -1,45 +1,67 @@
+import { useDispatch } from "react-redux";
+import { save } from "../authStore";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { auth, logInWithEmailAndPassword, signInWithGoogle } from "../../firebase";
+import { auth, logInWithEmailAndPassword, db } from "../../firebase";
+import { query, collection, getDocs, where } from "firebase/firestore";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { Button, TextField , Grid, Paper, Link, Typography} from '@mui/material';
-import "./Login.css";
+import { Button, TextField , Grid, Paper, Link, Alert} from '@mui/material';
+import logo from './../../fiuber-logo.png';
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [user, loading, error] = useAuthState(auth);
   const navigate = useNavigate();
+  const [errorStyle, setErrorStyle] = useState('none');
+  const [errorMessage, setErrorMessage] = useState(" ");
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (loading) {
       // maybe trigger a loading screen
       return;
     }
-    if (error) { 
+    if (error) {
       alert(error)
     }
-    if (user) navigate("/profile");
-  }, [user, loading, navigate, error]);
+    if (user){       
+      const fetchUserData = async () => {
+        try {
+            const q = query(collection(db, "users"), where("uid", "==", user?.uid));
+            const doc = await getDocs(q);
+            const data = doc.docs[0].data();        
+            dispatch(save(data));
+            navigate("/profile")            
+        } catch (err) {
+            console.error(err);
+            alert("Error retrieving user data");
+          }
+      };
+      fetchUserData();
+    } 
+  }, [user, loading, navigate, error, dispatch]);  
 
-  return (
+  return (    
     <Grid 
       display="flex"
       style={{height:'100vh',width: '100vw', alignItems:'center'}}
-    >
+    >      
       <Paper 
         elevation={10} 
-        style={{padding :20,height:'35vh',width:280, margin:"20px auto"}}
-      >
+        style={{padding :20,width:300, margin:"20px auto"}}
+      >              
+      <img src={logo} className="App-logo" alt="logo" />
+        <Alert severity="error" sx={{ display: errorStyle}} >Invalid username or password. <strong>{errorMessage}</strong></Alert>
         <TextField 
-          label="Correo electrónico" 
+          label="E-mail" 
           variant="outlined" 
           value={email}
           style={{ margin:10}}
           onChange={(e) => setEmail(e.target.value)}
           />
         <TextField 
-          label="Contraseña" 
+          label="Password" 
           variant="outlined"
           type="password" 
           value={password}
@@ -49,25 +71,16 @@ function Login() {
         <Button
           variant="contained"
           style={{ margin:10}}
-          onClick={() => logInWithEmailAndPassword(email, password)}
+          onClick={() => logInWithEmailAndPassword(email, password, (content) => {
+            setPassword("");
+            setErrorStyle('flexbox');
+            setErrorMessage(content); 
+          })}
           >
-          Iniciar sesión
-        </Button>
-        <Button
-          variant="text"
-          style={{ margin:10}}
-          onClick={signInWithGoogle}
-          >
-          Iniciar sesión con Google
-        </Button>
-        <Link href="/reset">Olvidé mi contraseña</Link>
-        <Typography variant='subtitle2' style={{ marginTop:10}}>
-          No tiene una cuenta? 
-        </Typography>
-        <Typography variant='subtitle2'>
-          <Link href="/register"> Regístrese </Link>
-          ahora.
-        </Typography>
+          Sign in
+        </Button>        
+        <br></br>
+        <Link href="/reset">Forgot my password</Link>        
       </Paper>
     </Grid>
 

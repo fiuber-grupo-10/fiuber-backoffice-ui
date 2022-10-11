@@ -1,36 +1,30 @@
+import { getUser } from "../authStore";
 import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
-import { auth, db, logout } from "../../firebase";
-import { query, collection, getDocs, where } from "firebase/firestore";
-import { Button, TextField , Grid, Paper, Link, Typography} from '@mui/material';
-import "./Dashboard.css";
+import { auth } from "../../firebase";
+import { Grid, Paper, Typography} from '@mui/material';
 import Navbar from "./Navbar";
 
 function Profile() {
   const [user, loading, error] = useAuthState(auth);
   const [name, setName] = useState("");
   const navigate = useNavigate();
-
-  const fetchUserName = async () => {
-    try {
-        const q = query(collection(db, "users"), where("uid", "==", user?.uid));
-        const doc = await getDocs(q);
-        const data = doc.docs[0].data();
-        setName(data.name);
-    } catch (err) {
-        console.error(err);
-        alert("Error obteniendo los datos de usuario");
-      }
-  };
+  var currentUser = getUser()  
+  
   useEffect(() => {
     if (loading) return;
     if (!user) return navigate("/");
+    if (!currentUser) return navigate("/");
+    if (!currentUser.roles.includes("admin")){
+      return navigate("/unauthorized");
+    }
     if (error) { 
       alert(error)
-    }
-    fetchUserName();
-  });
+    }       
+    
+    setName(currentUser.name);
+  }, [setName, currentUser, navigate, error,loading,user]);
 
   return (
     <Grid
