@@ -35,7 +35,7 @@ function Login() {
             navigate("/profile")            
         } catch (err) {
             console.error(err);
-            alert("Error obteniendo los datos de usuario");
+            alert("Error retrieving user data");
           }
       };
       fetchUserData();
