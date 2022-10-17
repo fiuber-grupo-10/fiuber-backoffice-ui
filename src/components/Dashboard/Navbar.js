@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
@@ -37,6 +36,10 @@ export default function Navbar() {
 
     const navigateProfile = () => {
         navigate('/profile');
+    };
+
+    const navigateDashboard = () => {
+        navigate('/dashboard');
     };
 
     return (
@@ -79,6 +82,7 @@ export default function Navbar() {
                         onClose={handleClose}
                         >
                         <MenuItem onClick={navigateProfile}>Profile</MenuItem>
+                        <MenuItem onClick={navigateDashboard}>Dashboard</MenuItem>
                         <MenuItem onClick={logout}>Log out</MenuItem>
                     </Menu>
                 </div>
