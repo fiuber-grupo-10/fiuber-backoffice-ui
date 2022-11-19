@@ -52,7 +52,8 @@ const signInWithGoogle = async () => {
 };
 const logInWithEmailAndPassword = async (email, password, callback) => {
   try {
-    await signInWithEmailAndPassword(auth, email, password);
+    const result = await signInWithEmailAndPassword(auth, email, password);
+    sessionStorage.setItem('accessToken', result.user.accessToken);    
   } catch (err) {
     callback(err.message)
     console.error(err);
