@@ -4,7 +4,6 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-
 import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
@@ -13,7 +12,8 @@ import { query, collection, getDocs, where } from "firebase/firestore";
 import { Grid, Paper, Typography } from '@mui/material';
 import Navbar from "./Navbar";
 
-function Dashboard() {
+function Dashboard(props) {
+  const [fetchedData, setFetchedData] = useState(false);
   const [user, loading, error] = useAuthState(auth);
   const [name, setName] = useState("");
   const [users, setUsers] = useState([]);
@@ -40,10 +40,16 @@ function Dashboard() {
     if (error) {
       alert(error)
     }
-
-    fetchUserName();
-    fetchUsers();
+    loadUsers();
   });
+
+  function loadUsers(){  
+    if (!fetchedData){
+      fetchUserName();
+      fetchUsers();
+    }
+    setFetchedData(true);
+  }
   return (    
     <Grid style={{ height: '100vh', width: '100vw', alignItems: 'center' }}>
       <Navbar />
