@@ -4,6 +4,7 @@ import Login from "./components/Auth/Login";
 import Register from "./components/Auth/Register";
 import Reset from "./components/Auth/Reset";
 import Dashboard from './components/Dashboard/Dashboard';
+import Admins from './components/Dashboard/Admins';
 import Profile from './components/Dashboard/Profile';
 import Logout from './components/Auth/Logout';
 import Unauthorized from './components/Auth/Unauthorized';
@@ -18,6 +19,7 @@ function App() {
           <Route exact path="/reset" element={<Reset />} />
           <Route exact path="/profile" element={<Profile />} />
           <Route exact path='/dashboard' element={<Dashboard/>}/>
+          <Route exact path='/admins' element={<Admins/>}/>
           <Route exact path='/unauthorized' element={<Unauthorized/>}/>
         </Routes>
       </Router>
