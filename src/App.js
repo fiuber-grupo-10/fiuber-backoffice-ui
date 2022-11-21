@@ -8,6 +8,8 @@ import Admins from './components/Dashboard/Admins';
 import Profile from './components/Dashboard/Profile';
 import Logout from './components/Auth/Logout';
 import Unauthorized from './components/Auth/Unauthorized';
+import Rules from './components/Dashboard/Rules';
+
 function App() {
   return (
     <div className="App">
@@ -20,6 +22,7 @@ function App() {
           <Route exact path="/profile" element={<Profile />} />
           <Route exact path='/dashboard' element={<Dashboard/>}/>
           <Route exact path='/admins' element={<Admins/>}/>
+          <Route exact path='/rules' element={<Rules/>}/>
           <Route exact path='/unauthorized' element={<Unauthorized/>}/>
         </Routes>
       </Router>
