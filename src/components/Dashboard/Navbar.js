@@ -46,6 +46,10 @@ export default function Navbar() {
         navigate('/admins');
     };    
 
+    const navigateRules = () => {
+        navigate('/rules');
+    }; 
+
     return (
         <AppBar style={{height:'6vh'}} position="static">
             <Toolbar>
@@ -88,6 +92,7 @@ export default function Navbar() {
                         <MenuItem onClick={navigateProfile}>Profile</MenuItem>
                         <MenuItem onClick={navigateDashboard}>Dashboard</MenuItem>
                         <MenuItem onClick={navigateAdmins}>Manage Admins</MenuItem>
+                        <MenuItem onClick={navigateRules}>Manage Rules</MenuItem>
                         <MenuItem onClick={logout}>Log out</MenuItem>
                     </Menu>
                 </div>

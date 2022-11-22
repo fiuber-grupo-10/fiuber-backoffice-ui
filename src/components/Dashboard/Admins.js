@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { auth } from "../../firebase";
 import { Grid, Paper, Button, TextField, Alert } from '@mui/material';
 import Navbar from "./Navbar";
-import {urlUsers } from '../../vars'
+import { urlUsers } from '../../vars'
 
 function Admins() {
   const [user, loading, error] = useAuthState(auth);
@@ -32,7 +32,7 @@ function Admins() {
     }
     if (error) {
       alert(error)
-    }    
+    }
   }, [currentUser, navigate, error, loading, user]);
 
   const [formData, setFormData] = useState({
@@ -93,7 +93,13 @@ function Admins() {
       )
     };
     fetch(urlUsers + 'admins/', requestOptions)
-      .then(response => setOpenSuccess(true))
+      .then(response => response.json())
+      .then(response => {        
+        if (response.uid)
+          setOpenSuccess(true);
+        else
+          alert('Error: ' + response.message)
+      })
       .catch(err => alert('There has been an error creating the user: ' + err))
   };
 
