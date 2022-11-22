@@ -39,12 +39,14 @@ function Profile() {
           elevation={10} 
           style={{padding :20,height:'90%',width:'90%', margin:"20px auto"}}
         >
+          <h1>Welcome to the FIUBER's admin page, {name}</h1>
           <Typography>
               {name}
           </Typography>
           <Typography>
               {user?.email}
           </Typography>
+          
         </Paper>
       </Grid>
     </Grid>
