@@ -21,7 +21,7 @@ function Logout() {
       <Button
           variant="contained"
           style={{ margin:10}}
-          onClick={() => navigate("/")}
+          onClick={() => navigate("/fiuber-backoffice-ui/")}
           >
           home
         </Button> 

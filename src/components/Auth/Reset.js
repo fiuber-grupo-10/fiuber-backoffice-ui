@@ -15,7 +15,7 @@ function Reset() {
     if (error) { 
       alert(error)
     }
-    if (user) navigate("/dashboard");
+    if (user) navigate("/fiuber-backoffice-ui/dashboard");
   }, [user, loading, navigate, error]);
 
   return (
@@ -37,7 +37,7 @@ function Reset() {
         <Button
           variant="contained"
           style={{ margin:10}}
-          onClick={() =>{sendPasswordReset(email); navigate('/');} 
+          onClick={() =>{sendPasswordReset(email); navigate('/fiuber-backoffice-ui/');} 
         }>
           Reset password
         </Button> 

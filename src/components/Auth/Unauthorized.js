@@ -20,7 +20,7 @@ function Unauthorized() {
         <Button
           variant="contained"
           style={{ margin:10}}
-          onClick={() => {logout(); navigate("/")}}
+          onClick={() => {logout(); navigate("/fiuber-backoffice-ui/")}}
           >
           log out
         </Button> 

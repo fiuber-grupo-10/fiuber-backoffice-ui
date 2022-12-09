@@ -96,10 +96,10 @@ function Rules() {
 
   useEffect(() => {
     if (loading) return;
-    if (!user) return navigate("/");
-    if (!currentUser) return navigate("/");
+    if (!user) return navigate("/fiuber-backoffice-ui/");
+    if (!currentUser) return navigate("/fiuber-backoffice-ui/");
     if (!currentUser.roles.includes("admin")) {
-      return navigate("/unauthorized");
+      return navigate("/fiuber-backoffice-ui/unauthorized");
     }
     if (error) {
       alert(error)
