@@ -33,7 +33,7 @@ function Login() {
           const doc = await getDocs(q);
           const data = doc.docs[0].data();
           dispatch(save(data));
-          navigate("/profile")
+          navigate("/fiuber-backoffice-ui/profile")
         } catch (err) {
           console.error(err);
           alert("Error retrieving user data");
@@ -86,7 +86,7 @@ function Login() {
           Sign in
         </Button>
         <br></br>
-        <Link href="/reset">Forgot my password</Link>
+        <Link href="/fiuber-backoffice-ui/reset">Forgot my password</Link>
       </Paper>
     </Grid>
 

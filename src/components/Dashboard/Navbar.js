@@ -19,7 +19,7 @@ export default function Navbar() {
 
     useEffect(() => {
       if (loading) return;
-      if (!user) return navigate("/");
+      if (!user) return navigate("/fiuber-backoffice-ui/");
       if (error) { 
         alert(error)
       }
@@ -35,19 +35,19 @@ export default function Navbar() {
     };
 
     const navigateProfile = () => {
-        navigate('/profile');
+        navigate('/fiuber-backoffice-ui/profile');
     };
 
     const navigateDashboard = () => {
-        navigate('/dashboard');
+        navigate('/fiuber-backoffice-ui/dashboard');
     };
 
     const navigateAdmins = () => {
-        navigate('/admins');
+        navigate('/fiuber-backoffice-ui/admins');
     };    
 
     const navigateRules = () => {
-        navigate('/rules');
+        navigate('/fiuber-backoffice-ui/rules');
     }; 
 
     return (

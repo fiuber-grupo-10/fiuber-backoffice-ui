@@ -38,7 +38,7 @@ function Dashboard(props) {
   };
   useEffect(() => {
     if (loading) return;
-    if (!user) return navigate("/");
+    if (!user) return navigate("/fiuber-backoffice-ui/");
     if (error) {
       alert(error)
     }

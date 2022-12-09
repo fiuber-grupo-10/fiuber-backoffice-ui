@@ -15,15 +15,15 @@ function App() {
     <div className="App">
       <Router>
         <Routes>
-          <Route exact path="/" element={<Login />} />
-          <Route exact path="/logout" element={<Logout />} />
-          <Route exact path="/register" element={<Register />} />
-          <Route exact path="/reset" element={<Reset />} />
-          <Route exact path="/profile" element={<Profile />} />
-          <Route exact path='/dashboard' element={<Dashboard/>}/>
-          <Route exact path='/admins' element={<Admins/>}/>
-          <Route exact path='/rules' element={<Rules/>}/>
-          <Route exact path='/unauthorized' element={<Unauthorized/>}/>
+          <Route exact path="fiuber-backoffice-ui/" element={<Login />} />
+          <Route exact path="fiuber-backoffice-ui/logout" element={<Logout />} />
+          <Route exact path="fiuber-backoffice-ui/register" element={<Register />} />
+          <Route exact path="fiuber-backoffice-ui/reset" element={<Reset />} />
+          <Route exact path="fiuber-backoffice-ui/profile" element={<Profile />} />
+          <Route exact path='fiuber-backoffice-ui/dashboard' element={<Dashboard/>}/>
+          <Route exact path='fiuber-backoffice-ui/admins' element={<Admins/>}/>
+          <Route exact path='fiuber-backoffice-ui/rules' element={<Rules/>}/>
+          <Route exact path='fiuber-backoffice-ui/unauthorized' element={<Unauthorized/>}/>
         </Routes>
       </Router>
     </div>
