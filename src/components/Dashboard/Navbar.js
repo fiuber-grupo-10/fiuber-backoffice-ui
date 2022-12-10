@@ -50,6 +50,10 @@ export default function Navbar() {
         navigate('/fiuber-backoffice-ui/rules');
     }; 
 
+    const navigateTransactions = () => {
+        navigate('/fiuber-backoffice-ui/transactions');
+    }; 
+
     return (
         <AppBar style={{height:'6vh'}} position="static">
             <Toolbar>
@@ -93,6 +97,7 @@ export default function Navbar() {
                         <MenuItem onClick={navigateDashboard}>Dashboard</MenuItem>
                         <MenuItem onClick={navigateAdmins}>Manage Admins</MenuItem>
                         <MenuItem onClick={navigateRules}>Manage Rules</MenuItem>
+                        <MenuItem onClick={navigateTransactions}>Transactions List</MenuItem>
                         <MenuItem onClick={logout}>Log out</MenuItem>
                     </Menu>
                 </div>
