@@ -22,7 +22,7 @@ import CheckIcon from '@mui/icons-material/Check';
 import { Grid, Paper } from '@mui/material';
 import { urlPayments } from '../../vars'
 
-function Rules() {
+function Transactions() {
   const [fetchedTransactions, setFetchedTransactions] = useState(false);
   var currentUser = getUser()
   const [user, loading, error] = useAuthState(auth);
@@ -36,7 +36,7 @@ function Rules() {
       setTransactionsFiltered(transactions);
     else
       setTransactionsFiltered(transactions.filter(tx => tx.status === event.target.value))
-    
+
   };
   const navigate = useNavigate();
 
@@ -55,13 +55,11 @@ function Rules() {
         method: 'GET',
         headers: { 'Authorization': 'Bearer ' + user.accessToken },
       };
-      fetch(urlPayments + 'deposit', requestOptions)
+      fetch(urlPayments + 'transactions', requestOptions)
         .then(response => response.json())
-        .then(response => {
+        .then(response => {          
           setTransactions(response)
           setTransactionsFiltered(response)
-          console.log(response);
-          console.log(transactions);
         })
         .catch(err => alert('Error fetching transactions'));
       setFetchedTransactions(true)
@@ -94,7 +92,8 @@ function Rules() {
                   onChange={handleChange}
                 >
                   <FormControlLabel value="all" control={<Radio />} label="All" />
-                  <FormControlLabel value="pending" control={<Radio />} label="Pending" />
+                  <FormControlLabel value="pending_driver" control={<Radio />} label="Pending Driver" />
+                  <FormControlLabel value="pending_passenger" control={<Radio />} label="Pending Passenger" />
                   <FormControlLabel value="completed" control={<Radio />} label="Completed" />
                 </RadioGroup>
               </FormControl>
@@ -119,21 +118,23 @@ function Rules() {
                         sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                       >
                         <TableCell component="th" scope="row">
-                          {tx.status === "pending" ?
-                            <Tooltip title="Pending">
-                              <PendingIcon>
-                                <Avatar>
-                                  <span primary={tx.status} secondary="Event" />
-                                </Avatar>
-                              </PendingIcon>
-                            </Tooltip> :
+                          {tx.status === "completed" ?
                             <Tooltip title="Completed">
                               <CheckIcon>
                                 <Avatar>
                                   <span primary={tx.status} secondary="Event" />
                                 </Avatar>
                               </CheckIcon>
-                            </Tooltip>}
+                            </Tooltip>
+                            :
+                            <Tooltip title="Pending">
+                              <PendingIcon>
+                                <Avatar>
+                                  <span primary={tx.status} secondary="Event" />
+                                </Avatar>
+                              </PendingIcon>
+                            </Tooltip>
+                          }
                         </TableCell>
                         <TableCell align="right">{tx.txHash}</TableCell>
                         <TableCell align="right">{tx.amount}</TableCell>
@@ -155,4 +156,4 @@ function Rules() {
   );
 }
 
-export default Rules;
+export default Transactions;
