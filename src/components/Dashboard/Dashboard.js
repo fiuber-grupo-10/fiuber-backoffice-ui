@@ -1,3 +1,4 @@
+import Link from '@mui/material/Link';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -74,11 +75,11 @@ function Dashboard(props) {
               <Table sx={{ minWidth: 650 }} aria-label="simple table">
                 <TableHead>
                   <TableRow>
-                    <TableCell>Email</TableCell>
+                    <TableCell align="left">ID</TableCell>
+                    <TableCell align="right">Email</TableCell>
                     <TableCell align="right">Name</TableCell>
                     <TableCell align="right">Provider</TableCell>
                     <TableCell align="right">Roles</TableCell>
-                    <TableCell align="right">ID</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
@@ -87,13 +88,14 @@ function Dashboard(props) {
                       key={row.name}
                       sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                     >
-                      <TableCell component="th" scope="row">
-                        {row.email}
-                      </TableCell>
+                      <TableCell onClick={() => navigate('/fiuber-backoffice-ui/users/'+row.uid )} align="left">
+                      <Link onClick={e => e.preventDefault()} href="#">{row.uid}</Link>
+                        </TableCell>
+                      <TableCell align="right" component="th" scope="row">{row.email}</TableCell>                      
                       <TableCell align="right">{row.name}</TableCell>
                       <TableCell align="right">{row.authProvider}</TableCell>
                       <TableCell align="right">{row?.roles?.toString()}</TableCell>
-                      <TableCell align="right">{row.uid}</TableCell>
+                      
                     </TableRow>
                   ))}
                 </TableBody>
