@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/fiuber-backoffice-ui/static/css/main.ca253fb2.css",
-    "main.js": "/fiuber-backoffice-ui/static/js/main.ae39b396.js",
+    "main.js": "/fiuber-backoffice-ui/static/js/main.83b1e6a7.js",
     "static/js/787.7713919e.chunk.js": "/fiuber-backoffice-ui/static/js/787.7713919e.chunk.js",
     "static/media/fiuber-logo.png": "/fiuber-backoffice-ui/static/media/fiuber-logo.abc9b12ae5699b2dc1ea.png",
     "static/media/roboto-latin-900italic.woff": "/fiuber-backoffice-ui/static/media/roboto-latin-900italic.c20d916c1a1b094c1cec.woff",
@@ -30,11 +30,11 @@
     "static/media/roboto-latin-900.woff2": "/fiuber-backoffice-ui/static/media/roboto-latin-900.870c8c1486f76054301a.woff2",
     "index.html": "/fiuber-backoffice-ui/index.html",
     "main.ca253fb2.css.map": "/fiuber-backoffice-ui/static/css/main.ca253fb2.css.map",
-    "main.ae39b396.js.map": "/fiuber-backoffice-ui/static/js/main.ae39b396.js.map",
+    "main.83b1e6a7.js.map": "/fiuber-backoffice-ui/static/js/main.83b1e6a7.js.map",
     "787.7713919e.chunk.js.map": "/fiuber-backoffice-ui/static/js/787.7713919e.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.ca253fb2.css",
-    "static/js/main.ae39b396.js"
+    "static/js/main.83b1e6a7.js"
   ]
 }
