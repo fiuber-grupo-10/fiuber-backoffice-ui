@@ -11,6 +11,7 @@ import Unauthorized from './components/Auth/Unauthorized';
 import Rules from './components/Dashboard/Rules';
 import Transactions from './components/Dashboard/Transactions';
 import User from './components/Dashboard/User';
+import Metrics from './components/Dashboard/Metrics';
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
           <Route exact path='fiuber-backoffice-ui/rules' element={<Rules/>}/>
           <Route exact path='fiuber-backoffice-ui/transactions' element={<Transactions/>}/>
           <Route exact path='fiuber-backoffice-ui/users/:userId' element={<User/>}/>
+          <Route exact path='fiuber-backoffice-ui/Metrics' element={<Metrics/>}/>
           <Route exact path='fiuber-backoffice-ui/unauthorized' element={<Unauthorized/>}/>
         </Routes>
       </Router>
