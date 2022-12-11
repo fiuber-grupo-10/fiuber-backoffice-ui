@@ -61,10 +61,14 @@ function User() {
     };
     
     fetch(urlUsers + 'users/block/' + params.userId, requestOptions)      
-      .then(response => {        
+      .then(response => {   
+        if (block)     
+          alert('User blocked')
+        else
+          alert ('User unblocked')
         console.log(response);
       })
-      .catch(err => alert('Error fetching user data'));
+      .catch(err => alert('Error blocking the usergit'));
     setFetchedClient(false)
   }
 
