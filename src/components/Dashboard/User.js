@@ -68,7 +68,7 @@ function User() {
           alert ('User unblocked')
         console.log(response);
       })
-      .catch(err => alert('Error blocking the usergit'));
+      .catch(err => alert('Error blocking the user'));
     setFetchedClient(false)
   }
 
