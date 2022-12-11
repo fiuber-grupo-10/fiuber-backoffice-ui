@@ -50,7 +50,9 @@ function User() {
   function blockUser(block) {
     const requestOptions = {
       method: 'PATCH',
-      headers: { 'Authorization': 'Bearer ' + user.accessToken },
+      headers: { 
+      'Authorization': 'Bearer ' + user.accessToken,
+      'Content-Type': 'application/json' },
       body: JSON.stringify(
         {
           blocked: block
