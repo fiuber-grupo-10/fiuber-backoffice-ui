@@ -47,29 +47,57 @@ function User() {
     }
   }, [currentUser, navigate, client, fetchedClient, error, loading, user, params.userId]);
 
-  function blockUser(block) {
+  async function blockUser(block) {
     const requestOptions = {
       method: 'PATCH',
-      headers: { 
-      'Authorization': 'Bearer ' + user.accessToken,
-      'Content-Type': 'application/json' },
+      headers: {
+        'Authorization': 'Bearer ' + user.accessToken,
+        'Content-Type': 'application/json'
+      },
       body: JSON.stringify(
         {
           blocked: block
         }
       )
     };
-    
-    fetch(urlUsers + 'users/block/' + params.userId, requestOptions)      
-      .then(response => {   
-        if (block)     
+
+    let userHasBeenBlocked = false;
+    await fetch(urlUsers + 'users/block/' + params.userId, requestOptions)
+      .then(response => {
+        if (block) {
+          userHasBeenBlocked = true;
           alert('User blocked')
+        }
         else
-          alert ('User unblocked')
+          alert('User unblocked')
         console.log(response);
       })
       .catch(err => alert('Error blocking the user'));
     setFetchedClient(false)
+
+    if (userHasBeenBlocked === true)
+      await sendBlockedUserMetric();
+  }
+
+  async function sendBlockedUserMetric() {
+    const requestOptions = {
+      method: 'POST',
+      headers: {
+        'Authorization': 'Bearer ' + user.accessToken,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(
+        {
+          event: "BLOCK",
+          info: "User blocked by an admin"
+        })
+    };
+
+    await fetch(urlUsers + 'events', requestOptions)
+      .then(response => {        
+        console.log('user blocked metric');
+      })
+      .catch(err => console.log('Error sending BLOCK metric'));
   }
 
   return (
@@ -102,11 +130,11 @@ function User() {
                     {client?.roles?.toString()}
                   </Typography>
                   {(client.blocked === true) ?
-                    <Button size="small" onClick={() => blockUser(false)}>Unblock user</Button>
+                    <Button size="small" onClick={async () => await blockUser(false)}>Unblock user</Button>
                     : <span></span>}
 
                   {(client.blocked === false || client?.blocked === undefined) ?
-                    <Button size="small" onClick={() => blockUser(true)}>Block user</Button>
+                    <Button size="small" onClick={async () => await blockUser(true)}>Block user</Button>
                     : <span></span>}
                 </CardContent>
                 <CardActions>
