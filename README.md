@@ -15,7 +15,7 @@ Compila la aplicación para producció en la carpeta `build`.\
 
 ## vars.js
 
-Se necesita definiar las urls para las distintas APIs de usuarios, backoffice y pagos en las variables: urlUsers, urlBackoffice, urlPayments, respectivamente.
+Se necesita definiar las urls para las distintas APIs de usuarios, backoffice y pagos en las variables: `urlUsers`, `urlBackoffice`, y `urlPayments`, respectivamente.
 
 ## src/firebase.js
 
