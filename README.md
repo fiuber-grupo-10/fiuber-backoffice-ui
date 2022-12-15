@@ -24,3 +24,7 @@ Es necesario reemplazar `firebaseConfig` con los datos del cliente para poder in
 ## Usuario admin por defecto
 
 Para acceder a la aplicación por primera vez se necesita contar con un administrador creado de antemano al momento de configurar Firebase.
+
+## CORS
+
+Las APIs de Usuarios, Backoffice y Pagos deben estar configuradas para aceptar peticiones desde ésta UI
