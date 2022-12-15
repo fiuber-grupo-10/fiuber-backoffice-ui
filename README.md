@@ -13,7 +13,7 @@ Compila la aplicación para producció en la carpeta `build`.\
 
 ## Configuración
 
-## vars.js
+## src/vars.js
 
 Se necesita definiar las urls para las distintas APIs de usuarios, backoffice y pagos en las variables: `urlUsers`, `urlBackoffice`, y `urlPayments`, respectivamente.
 
